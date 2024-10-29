@@ -1,0 +1,6 @@
+{
+    "train_path": "chest_ct_scan/data/train",
+    "valid_path": "chest_ct_scan/data/valid",
+    "test_path": "chest_ct_scan/data/test"
+
+}
