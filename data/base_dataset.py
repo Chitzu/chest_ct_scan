@@ -15,7 +15,11 @@ class BaseDataset(Dataset):
         self.mode = mode
         self._process_dataset(self.path, self.mode)   
         self.transform = transforms.Compose(
-            [transforms.Resize((400, 400)),
+            [
+            transforms.Resize((500, 500)),
+            transforms.RandomCrop((400, 400)),
+            transforms.RandomHorizontalFlip(p=0.3),
+            transforms.ColorJitter(),
             transforms.ToTensor()
             
         ]) 
@@ -33,9 +37,6 @@ class BaseDataset(Dataset):
             self.labels = self.labels + labels
     
     def __getitem__(self, index):
-        # img = cv2.imread(self.data[index]) / 255.0
-        
-        # img = Image.fromarray(img).convert('RGB')
         img = Image.open(self.data[index]).convert('RGB')
         label = self.labels[index]
 

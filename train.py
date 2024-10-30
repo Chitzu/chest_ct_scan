@@ -21,7 +21,7 @@ class Trainer():
 
         self.model.train().to(self.device).float()
         for x, y in tqdm(self.train_loader, bar_format=BAR_FORMAT):
-            x = x.to(self.device)
+            x = x.to(self.device) / 255.0
             y = y.to(self.device)
 
             self.optimizer.zero_grad()
@@ -32,12 +32,12 @@ class Trainer():
             self.optimizer.step()
 
             pred = pred.softmax(1).argmax(1)
-
             acc = (pred == y).sum() / len(pred) * 100
         # print(pred.shape, y.shape)
         # print(len(self.train_loader))
-        print(acc)
-        print(pred[:10], y[:10])
+        # print(acc)
+        print(loss, acc)
+        # print(pred[:10], y[:10])
 
             
 
@@ -46,7 +46,7 @@ class Trainer():
 
         self.model.eval().to(self.device).float()
         for x, y in tqdm(self.valid_loader, bar_format=BAR_FORMAT):
-            x = x.to(self.device)
+            x = x.to(self.device) / 255.0
             y = y.to(self.device)
 
             with torch.no_grad():
@@ -54,12 +54,11 @@ class Trainer():
                 loss = self.loss_fn(pred, y)
 
             pred = pred.softmax(1).argmax(1)
-
             acc = (pred == y).sum() / len(pred) * 100
         # print(pred.shape, y.shape)
         # print(len(self.train_loader))
-        print(acc)
-        print(pred[:10], y[:10])
+        print(loss, acc)
+        # print(pred[:10], y[:10])
 
     def save_model(self, epoch, best=False):
         pass
@@ -75,10 +74,10 @@ class Trainer():
             print(f"Valid on epoch: {epoch}")
             self.valid_epoch(epoch)
 
-            if epoch % self.config["save_train_epochs"]:
-                self.save_model(epoch)
-            
-            if self.latest_acc > self.best_model:
+        if epoch % self.config["save_train_epochs"]:
+            self.save_model(epoch)
+        
+        if self.latest_acc > self.best_model:
                 self.save_model(epoch, best=True)
 
             

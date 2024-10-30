@@ -14,4 +14,3 @@ if __name__ == "__main__":
     model = Network()
     trainer = Trainer(config, train_loader, validation_loader, test_loader, model)
     trainer.train()
-    print(len(train_loader), len(validation_loader))

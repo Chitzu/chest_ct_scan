@@ -3,11 +3,11 @@
     "valid_path" : "chest_ct_scan/data/valid",
     "test_path" : "chest_ct_scan/data/test",
     
-    "train_epochs" : 10,
-    "valid_epochs" : 5,
+    "train_epochs" : 20,
+    "valid_epochs" : 10,
 
     "save_train_epochs" : 5,
 
     "batch_size" : 32,
-    "lr" : 0.001  
+    "lr" : 0.0001  
 }
