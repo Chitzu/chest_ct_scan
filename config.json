@@ -1,6 +1,13 @@
 {
-    "train_path": "chest_ct_scan/data/train",
-    "valid_path": "chest_ct_scan/data/valid",
-    "test_path": "chest_ct_scan/data/test"
+    "train_path" : "chest_ct_scan/data/train",
+    "valid_path" : "chest_ct_scan/data/valid",
+    "test_path" : "chest_ct_scan/data/test",
+    
+    "train_epochs" : 10,
+    "valid_epochs" : 5,
 
+    "save_train_epochs" : 5,
+
+    "batch_size" : 32,
+    "lr" : 0.001  
 }
