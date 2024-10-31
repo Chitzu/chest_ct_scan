@@ -2,7 +2,8 @@
     "train_path" : "chest_ct_scan/data/train",
     "valid_path" : "chest_ct_scan/data/valid",
     "test_path" : "chest_ct_scan/data/test",
-    
+    "save_model_path" : "saved_models",
+
     "train_epochs" : 20,
     "valid_epochs" : 10,
 
